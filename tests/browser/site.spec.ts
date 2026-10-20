@@ -43,7 +43,11 @@ for (const width of [320, 360, 390, 768, 1024, 1440]) {
     for (const path of ['/', '/for-authors/', '/demo/', '/contacts/', '/technology/']) {
       await page.goto(path);
       if (path === '/' && [390, 1440].includes(width))
-        await page.screenshot({ path: `artifacts/home-${width}.png`, fullPage: width < 500 });
+        await page.screenshot({
+          path: `artifacts/home-${width}.png`,
+          fullPage: width < 500,
+          animations: 'disabled',
+        });
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       ).toBeTruthy();
@@ -68,6 +72,26 @@ test('navigation, contacts and content work without JavaScript', async ({ browse
   await page.goto('http://127.0.0.1:4321/contacts/');
   await expect(page.locator('a[href="https://t.me/Eduard_KHV"]')).toBeVisible();
   await context.close();
+});
+test('visual assets load locally and reduced motion leaves content visible', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+  await expect(page.locator('.hero h1')).toBeVisible();
+  for (const selector of ['.hero-art img', '.editorial-photo img']) {
+    const image = page.locator(selector);
+    await image.scrollIntoViewIfNeeded();
+    await expect(image).toBeVisible();
+    await expect
+      .poll(() =>
+        image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0),
+      )
+      .toBeTruthy();
+  }
+  await page.locator('.mode-art').first().scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
+  expect(await page.evaluate(() => document.fonts.check('500 20px "Unbounded"'))).toBe(true);
+  expect(await page.evaluate(() => document.fonts.check('400 20px "Golos Text"'))).toBe(true);
 });
 test('unknown routes return 404, public routes return 200, no browser errors', async ({ page }) => {
   const errors: string[] = [];

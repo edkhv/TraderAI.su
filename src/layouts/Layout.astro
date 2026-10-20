@@ -2,6 +2,8 @@
 import Mark from '../components/Mark.astro';
 import { link, repository } from '../lib/urls';
 import '../styles/global.css';
+import '../styles/fonts.css';
+import '../styles/visual.css';
 interface Props {
   title: string;
   description: string;
@@ -39,6 +41,7 @@ const nav = [
     <title>{title}</title>
   </head>
   <body>
+    <script src="../scripts/motion.ts"></script>
     <a class="skip" href="#main">
       Перейти к содержимому
     </a>
@@ -111,7 +114,7 @@ const nav = [
         </p>
         <div>
           <span>© {new Date().getUTCFullYear()} TraderAI</span>
-          <span class="mono">PUBLIC SHOWCASE · v0.1</span>
+          <span class="mono">PUBLIC SHOWCASE · v0.2</span>
         </div>
       </div>
     </footer>

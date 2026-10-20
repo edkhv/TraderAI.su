@@ -1,16 +1,18 @@
 ---
 import { modes } from '../content/site';
+import ModeVisual from './ModeVisual.astro';
 ---
 
 <div class="mode-grid">
   {modes.map((mode) => (
-    <article class="mode-card">
+    <article class="mode-card" data-reveal>
       <div class="card-top">
         <span class="mono">{mode.number} /</span>
         <span class="mode-glyph" aria-hidden="true">
           {mode.id === 'manual' ? '↗' : mode.id === 'plan' ? '≡' : '{ }'}
         </span>
       </div>
+      <ModeVisual mode={mode.id} />
       <h3>{mode.label}</h3>
       <h4>{mode.title}</h4>
       <p>{mode.text}</p>

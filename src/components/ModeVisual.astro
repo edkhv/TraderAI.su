@@ -1,0 +1,59 @@
+---
+interface Props {
+  mode: string;
+}
+const { mode } = Astro.props;
+---
+
+<svg
+  class:list={['mode-art', `mode-art-${mode}`]}
+  viewBox="0 0 360 190"
+  fill="none"
+  aria-hidden="true"
+>
+  <path
+    class="art-grid"
+    d="M0 47H360M0 95H360M0 143H360M60 0V190M120 0V190M180 0V190M240 0V190M300 0V190"
+  />
+  {mode === 'manual' ? (
+    <>
+      <path
+        class="art-line"
+        d="M20 140L55 120L84 131L115 73L146 91L175 60L202 105L232 85L261 98L302 45L340 65"
+      />
+      <path class="art-baseline" d="M20 100H340" />
+      <circle class="art-focus" cx="202" cy="105" r="25" />
+      <circle class="art-point" cx="202" cy="105" r="5" />
+      <path class="art-cursor" d="M218 115L245 134L232 138L227 152Z" />
+      <rect class="art-label" x="34" y="27" width="74" height="27" rx="5" />
+      <path class="art-detail" d="M46 40H63M71 40H94" />
+    </>
+  ) : mode === 'plan' ? (
+    <>
+      <path class="art-connector" d="M100 95H158V48H227M158 95V143H227" />
+      <rect class="art-sheet" x="25" y="55" width="76" height="80" rx="8" />
+      <path class="art-detail" d="M42 75H82M42 90H72M42 105H82M42 120H62" />
+      <rect class="art-label" x="227" y="28" width="105" height="41" rx="7" />
+      <rect class="art-sheet" x="227" y="122" width="105" height="41" rx="7" />
+      <path class="art-detail" d="M270 48H313M270 143H313" />
+      <path class="art-check" d="M240 47L245 52L255 40" />
+      <path class="art-detail" d="M240 143H254" />
+      <circle class="art-point" cx="158" cy="95" r="5" />
+    </>
+  ) : (
+    <>
+      <path class="art-connector" d="M78 57H163M196 57H279V132H198M164 132H78V57" />
+      <rect class="art-sheet" x="39" y="33" width="77" height="48" rx="9" />
+      <rect class="art-label" x="143" y="30" width="75" height="54" rx="9" />
+      <rect class="art-sheet" x="243" y="108" width="77" height="48" rx="9" />
+      <rect class="art-label" x="143" y="105" width="75" height="54" rx="9" />
+      <path
+        class="art-detail"
+        d="M67 48L57 57L67 66M87 48L97 57L87 66M77 46L73 68M267 122H296M267 134H287"
+      />
+      <path class="art-check" d="M165 55L176 66L196 45M165 131L176 142L196 121" />
+      <circle class="art-point" cx="279" cy="57" r="5" />
+      <circle class="art-point" cx="78" cy="132" r="5" />
+    </>
+  )}
+</svg>
