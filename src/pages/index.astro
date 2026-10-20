@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Preview from '../components/Preview.astro';
+import Modes from '../components/Modes.astro';
+import { questions, steps } from '../content/site';
+import { link, repository } from '../lib/urls';
+---
+
+<Layout
+  title="TraderAI — платформа авторских стратегий в разработке"
+  description="Интеллектуальная платформа для трейдеров и инвесторов: авторские стратегии, Video RAG, проверяемые решения и независимый контроль риска."
+>
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">
+        <span></span> Платформа в разработке
+      </p>
+      <h1>
+        Знакомая
+        <br />
+        стратегия.
+        <br />
+        <em>
+          Новый уровень
+          <br />
+          контроля.
+        </em>
+      </h1>
+      <p class="hero-description">
+        Создаём платформу, где инвесторы смогут выбирать авторские стратегии, а трейдеры —
+        превращать свой подход в проверяемый продукт.
+      </p>
+      <div class="actions">
+        <a class="button primary" href={link('how-it-works/')}>
+          Как это будет работать <span aria-hidden="true">↗</span>
+        </a>
+        <a class="text-link" href={link('for-authors/')}>
+          Я трейдер <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <p class="small hero-note">
+        Готовим ранний доступ. Сейчас доступны концепция и учебная демонстрация.
+      </p>
+    </div>
+    <div class="hero-visual">
+      <span class="visual-kicker mono">ЯСНОСТЬ НА КАЖДОМ ШАГЕ</span>
+      <Preview />
+    </div>
+  </section>
+  <div class="principle-strip wrap">
+    <div>
+      <span class="mono">01 / ПОДХОД</span>
+      <strong>Авторская стратегия</strong>
+    </div>
+    <span aria-hidden="true">↗</span>
+    <div>
+      <span class="mono">02 / ТЕХНОЛОГИЯ</span>
+      <strong>ИИ + проверяемый код</strong>
+    </div>
+    <span aria-hidden="true">↗</span>
+    <div>
+      <span class="mono">03 / КОНТРОЛЬ</span>
+      <strong>Объяснимые решения</strong>
+    </div>
+  </div>
+  <section class="section wrap" id="investors">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">ДЛЯ ИНВЕСТОРОВ</p>
+        <h2>
+          Между идеей и сделкой
+          <br />
+          должен быть понятный процесс.
+        </h2>
+      </div>
+      <p>
+        Вы знаете подход автора. Мы работаем над тем, чтобы связать его методику, брокерскую
+        инфраструктуру и ваши ограничения в одной системе.
+      </p>
+    </div>
+    <div class="steps">
+      {steps.map(([title, text], i) => (
+        <article>
+          <span class="step-number">0{i + 1}</span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+    <p class="section-note">
+      Сценарий будущей платформы. Подключение счетов и реальное исполнение пока недоступны.
+    </p>
+  </section>
+  <section class="section author-section" id="authors">
+    <div class="wrap">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ДЛЯ АВТОРОВ СТРАТЕГИЙ</p>
+          <h2>
+            Ваш способ торговать.
+            <br />
+            <em>Общие инструменты развития.</em>
+          </h2>
+        </div>
+        <a class="text-link" href={link('for-authors/')}>
+          Возможности для трейдеров ↗
+        </a>
+      </div>
+      <Modes />
+      <div class="shared-line">
+        <span class="mono">ЕДИНЫЙ КОНТУР</span>
+        <span>Анализ сделок</span>
+        <b aria-hidden="true">+</b>
+        <span>Формализация правил</span>
+        <b aria-hidden="true">+</b>
+        <span>Проверяемые подсказки</span>
+      </div>
+    </div>
+  </section>
+  <section class="section wrap research-section" id="technology">
+    <div>
+      <p class="eyebrow">ИНЖЕНЕРНЫЙ ПОДХОД</p>
+      <h2>
+        ИИ понимает контекст.
+        <br />
+        Код проверяет условия.
+        <br />
+        <em>Человек задаёт границы.</em>
+      </h2>
+      <p class="lead compact">
+        Гибридная архитектура соединяет знания профессиональных трейдеров с воспроизводимыми
+        расчётами и независимым контролем риска.
+      </p>
+      <a class="text-link" href={link('technology/')}>
+        Исследовать архитектуру ↗
+      </a>
+    </div>
+    <div class="research-list">
+      <article>
+        <span class="mono">01</span>
+        <div>
+          <h3>Знания с первоисточниками</h3>
+          <p>
+            Video RAG: от видеоматериала — к поиску по смыслу и ответу с таймкодом. В ответах можно
+            проверить основания.
+          </p>
+        </div>
+      </article>
+      <article>
+        <span class="mono">02</span>
+        <div>
+          <h3>Проверки, которые можно повторить</h3>
+          <p>
+            Формализованные условия и Risk Guard работают в программном слое. Вывод модели не равен
+            торговому поручению.
+          </p>
+        </div>
+      </article>
+      <article>
+        <span class="mono">03</span>
+        <div>
+          <h3>Испытания до реальных денег</h3>
+          <p>
+            Исторические эксперименты, виртуальные сделки, учёт издержек и журнал решений. Гипотеза
+            сначала проходит проверку.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="wrap demo-banner">
+    <div>
+      <p class="eyebrow">ПОПРОБУЙТЕ ЛОГИКУ ПРОЦЕССА</p>
+      <h2>
+        Что произойдёт,
+        <br />
+        если проверка не пройдена?
+      </h2>
+      <p>
+        Три источника решений. Один журнал. Посмотрите, как система объясняет разрешение, отказ и
+        недостаток данных.
+      </p>
+      <a class="button primary" href={link('demo/')}>
+        Открыть демонстрацию <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="demo-stamp" aria-hidden="true">
+      <span class="mono">RISK CHECK</span>
+      <span>→</span>
+      <strong>
+        Проверить.
+        <br />
+        Объяснить.
+        <br />
+        <em>Зафиксировать.</em>
+      </strong>
+      <span class="mono">SYNTHETIC DATA ONLY</span>
+    </div>
+  </section>
+  <section class="section wrap" id="stage">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">СТАТУС ПРОЕКТА</p>
+        <h2>Развиваем поэтапно.</h2>
+      </div>
+      <p>
+        Исследовательские прототипы — основа работы. Публичная платформа и допуск к реальным счетам
+        требуют следующих этапов.
+      </p>
+    </div>
+    <div class="roadmap">
+      <article class="current">
+        <span class="outline-tag">Сейчас</span>
+        <h3>Концепция и демонстрация</h3>
+        <p>Публичный сайт, архитектура и учебные сценарии. Подготовка раннего доступа.</p>
+      </article>
+      <article>
+        <span class="outline-tag">Следующий этап</span>
+        <h3>Закрытая проверка</h3>
+        <p>Согласование с авторами, проверка правил и виртуальные испытания.</p>
+      </article>
+      <article>
+        <span class="outline-tag">В перспективе</span>
+        <h3>Ограниченный пилот</h3>
+        <p>После технической, брокерской и правовой подготовки. Без обещанной даты.</p>
+      </article>
+    </div>
+  </section>
+  <section class="section wrap faq-section">
+    <div>
+      <p class="eyebrow">ВОПРОСЫ ПО СУЩЕСТВУ</p>
+      <h2>
+        До того,
+        <br />
+        как начать.
+      </h2>
+      <a class="text-link" href={link('risks/')}>
+        Подробнее о рисках ↗
+      </a>
+    </div>
+    <div class="faq">
+      {questions.map(([q, a]) => (
+        <details>
+          <summary>
+            {q}
+            <span aria-hidden="true">＋</span>
+          </summary>
+          <p>{a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  <section class="wrap final-cta">
+    <p class="eyebrow">TRADERAI / ОТ ИДЕИ К ПРОВЕРКЕ</p>
+    <h2>
+      Понимать стратегию.
+      <br />
+      <em>Доверять проверяемому процессу.</em>
+    </h2>
+    <div class="actions">
+      <a class="button primary" href={link('early-access/')}>
+        Статус раннего доступа ↗
+      </a>
+      <a class="text-link" href={repository}>
+        Код демонстрации на GitHub ↗
+      </a>
+    </div>
+  </section>
+</Layout>

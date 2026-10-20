@@ -1,0 +1,88 @@
+---
+import { link } from '../lib/urls';
+const bars = [
+  52, 68, 60, 82, 71, 97, 88, 77, 105, 117, 106, 127, 112, 98, 118, 139, 124, 147, 133, 120, 141,
+  156, 143, 161,
+];
+---
+
+<div class="terminal" aria-label="Демонстрация интерфейса: синтетический сценарий">
+  <div class="terminal-top">
+    <span>
+      <span class="status-dot"></span> Рабочее пространство
+    </span>
+    <span class="demo-tag">МАКЕТ</span>
+  </div>
+  <div class="terminal-body">
+    <div class="terminal-title">
+      <div>
+        <span class="mono muted">СЦЕНАРИЙ / 02</span>
+        <h3>От плана к решению</h3>
+      </div>
+      <span class="outline-tag">DEMO-A</span>
+    </div>
+    <div class="chart-label">
+      <span>Учебный рынок</span>
+      <span class="mono">M5 · синтетика</span>
+    </div>
+    <svg
+      class="chart"
+      viewBox="0 0 480 178"
+      role="img"
+      aria-label="Вымышленные свечи без цен и доходности, иллюстрация наблюдения за условием"
+    >
+      <defs>
+        <pattern id="grid" width="48" height="36" patternUnits="userSpaceOnUse">
+          <path d="M 48 0 L 0 0 0 36" fill="none" stroke="#26323c" stroke-width=".7" />
+        </pattern>
+      </defs>
+      <rect width="480" height="178" fill="url(#grid)" />
+      <path d="M0 78H480" stroke="#bfe887" stroke-dasharray="5 5" opacity=".65" />
+      {bars.map((value, i) => (
+        <g stroke={i % 4 === 1 ? '#b39386' : '#bcdf9a'} fill={i % 4 === 1 ? '#b39386' : '#bcdf9a'}>
+          <path d={`M${i * 19 + 15} ${185 - value - 19}v40`} />
+          <rect
+            x={i * 19 + 10}
+            y={185 - value - 8}
+            width="10"
+            height={i % 3 === 1 ? '19' : '13'}
+            rx="1"
+          />
+        </g>
+      ))}
+    </svg>
+    <div class="flow-label">
+      <span>01 Источник</span>
+      <span>02 Проверка</span>
+      <span>03 Журнал</span>
+    </div>
+    <div class="terminal-event">
+      <span class="event-icon">✓</span>
+      <div>
+        <strong>Условие плана зафиксировано</strong>
+        <span>Версия DEMO-v1 · источник сохранён</span>
+      </div>
+      <span class="mono">01</span>
+    </div>
+    <div class="terminal-event">
+      <span class="event-icon">✓</span>
+      <div>
+        <strong>Ограничения проверяет код</strong>
+        <span>Результат можно объяснить и повторить</span>
+      </div>
+      <span class="mono">02</span>
+    </div>
+    <div class="insight">
+      <span class="mono">AI / ПРОЕКТ ПОДСКАЗКИ</span>
+      <p>Проверить, как изменится результат при другом условии отмены.</p>
+      <span>Требует отдельного исследования</span>
+    </div>
+    <a class="terminal-bottom" href={link('demo/')}>
+      <span>Разобрать учебный сценарий</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+  <div class="terminal-caption">
+    <span class="status-dot"></span> Демонстрация интерфейса. Реальных сделок нет.
+  </div>
+</div>

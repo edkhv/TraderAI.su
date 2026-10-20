@@ -1,0 +1,31 @@
+# Add this independent site block to an existing installation after validation.
+# Never overwrite the configuration of unrelated sites with this file.
+traderai.su {
+    root * /var/www/traderai/current
+    encode zstd gzip
+    header {
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        X-Frame-Options DENY
+        Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+        Strict-Transport-Security "max-age=31536000"
+        Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; upgrade-insecure-requests"
+        -Server
+    }
+    @private path /.git* /.env* /.openai/* /node_modules/* /package.json /package-lock.json /src/* /docs/* /deploy/*
+    error @private 404
+    @assets path /_astro/*
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+    @html path / /for-authors/* /how-it-works/* /technology/* /safety/* /risks/* /contacts/* /early-access/* /privacy/* /demo/*
+    header @html Cache-Control "public, max-age=0, must-revalidate"
+    file_server
+    handle_errors 404 {
+        header X-Robots-Tag "noindex, follow"
+        rewrite * /404.html
+        file_server
+    }
+}
+
+www.traderai.su {
+    redir https://traderai.su{uri} permanent
+}

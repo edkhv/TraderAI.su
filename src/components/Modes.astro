@@ -1,0 +1,20 @@
+---
+import { modes } from '../content/site';
+---
+
+<div class="mode-grid">
+  {modes.map((mode) => (
+    <article class="mode-card">
+      <div class="card-top">
+        <span class="mono">{mode.number} /</span>
+        <span class="mode-glyph" aria-hidden="true">
+          {mode.id === 'manual' ? '↗' : mode.id === 'plan' ? '≡' : '{ }'}
+        </span>
+      </div>
+      <h3>{mode.label}</h3>
+      <h4>{mode.title}</h4>
+      <p>{mode.text}</p>
+      <div class="card-end">{mode.source}</div>
+    </article>
+  ))}
+</div>

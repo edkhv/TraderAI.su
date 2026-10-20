@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { modes } from '../content/site';
+---
+
+<Layout
+  title="Интерактивная демонстрация — TraderAI"
+  description="Три синтетических источника решений, независимая проверка, журнал и проект подсказки. Демонстрация без брокера и рыночных данных."
+  noindex
+>
+  <PageIntro
+    eyebrow="Интерактивная демонстрация / синтетические данные"
+    title="Одно решение. Вся цепочка проверки."
+    text="Выберите источник и учебную ситуацию. Посмотрите, почему проверка проходит или останавливает процесс, и как подсказка остаётся проектом изменения."
+  />
+  <div class="wrap page-content">
+    <noscript>
+      <div class="callout">
+        <p>
+          Для интерактивной демонстрации нужен JavaScript. Принцип: источник → проверка → журнал →
+          анализ → проект изменения. Ни один шаг не исполняет реальную сделку.
+        </p>
+      </div>
+    </noscript>
+    <div class="journal-demo" data-demo>
+      <div class="demo-controls">
+        <div class="mode-switch" role="group" aria-label="Источник учебного решения">
+          {modes.map((m) => (
+            <button type="button" data-mode={m.id} aria-pressed={m.id === 'plan'}>
+              {m.short}
+            </button>
+          ))}
+        </div>
+        <span class="demo-label">DEMO-A · НЕ РЕАЛЬНЫЙ ИНСТРУМЕНТ</span>
+      </div>
+      <div class="demo-layout">
+        <div class="demo-input">
+          <p class="eyebrow">01 / ИСТОЧНИК</p>
+          <h2 data-source-title>Условие учебного плана</h2>
+          <p data-source-text>
+            Предзаданный синтетический сценарий. Вызовы языковых моделей и брокеров отсутствуют.
+          </p>
+          <label class="demo-select-label" for="scenario">
+            Учебная ситуация
+          </label>
+          <select id="scenario" data-scenario>
+            <option value="normal">Условия определены · 10 единиц</option>
+            <option value="over-limit">Превышение лимита · 30 из 20 единиц</option>
+            <option value="missing-exit">Условие выхода не определено</option>
+            <option value="missing-source">Источник события отсутствует</option>
+          </select>
+          <button class="button primary" type="button" data-run>
+            Проверить сценарий · демо →
+          </button>
+          <button class="reset-link" type="button" data-reset>
+            Сбросить демонстрацию
+          </button>
+          <div class="demo-context">
+            <span>
+              Активная учебная версия: <strong data-version>DEMO-v1</strong>
+            </span>
+            <span>Лимит: 20 условных единиц</span>
+            <span>Реальные ордера: отсутствуют</span>
+          </div>
+        </div>
+        <div class="demo-output">
+          <p class="eyebrow">02 / ПРОВЕРКА И ЖУРНАЛ</p>
+          <h2>Основания видны.</h2>
+          <p data-empty>
+            Нажмите «Проверить сценарий». Все данные вымышлены. Числа служат только для иллюстрации
+            независимой проверки.
+          </p>
+          <div data-result hidden aria-live="polite">
+            <ul class="journal" data-journal></ul>
+            <div class="result-status" data-status></div>
+            <p class="small" data-analysis></p>
+            <div class="suggestion">
+              <span class="mono">03 / ПОДСКАЗКА — УЧЕБНЫЙ ТЕКСТ</span>
+              <h3>Сначала гипотеза, затем проверка.</h3>
+              <p>
+                Можно создать проект для отдельного исследования. Это заранее подготовленный пример,
+                не ответ работающей модели.
+              </p>
+              <button class="button secondary" type="button" data-propose>
+                Создать проект подсказки · демо
+              </button>
+              <div class="draft-status" data-draft aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="demo-caution">
+        Демо работает только в памяти этой страницы. Оно не собирает контакты, не подключает счёт и
+        не сохраняет состояние после обновления. Учебные числа не являются торговыми параметрами.
+      </p>
+    </div>
+  </div>
+  <script>
+    import '../demo/controller';
+  </script>
+</Layout>
