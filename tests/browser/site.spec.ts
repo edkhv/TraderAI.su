@@ -48,6 +48,13 @@ for (const width of [320, 360, 390, 768, 1024, 1440]) {
           fullPage: width < 500,
           animations: 'disabled',
         });
+      if (path === '/technology/' && [390, 1440].includes(width)) {
+        await page.screenshot({
+          path: `artifacts/technology-${width}.png`,
+          fullPage: true,
+          animations: 'disabled',
+        });
+      }
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
       ).toBeTruthy();
